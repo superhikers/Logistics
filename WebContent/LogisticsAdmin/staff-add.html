@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html class="x-admin-sm">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>欢迎页面-X-admin2.2</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+		<link rel="stylesheet" href="./css/font.css">
+		<link rel="stylesheet" href="./css/xadmin.css">
+		<script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="./js/xadmin.js"></script>
+		<script src="js/jquery.min.js"></script>
+		<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+		<!--[if lt IE 9]>
+            <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+            <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+	</head>
+
+	<body>
+		<div class="layui-fluid">
+			<div class="layui-row">
+				<form class="layui-form">
+					<div class="layui-form-item">
+						<label for="username" class="layui-form-label">
+                          <span class="x-red">*</span>员工姓名
+                      </label>
+						<div class="layui-input-inline">
+							<input type="text" id="s_name" name="username" required="" lay-verify="required" autocomplete="off" class="layui-input">
+						</div>
+						<div class="layui-form-mid layui-word-aux">
+							<span class="x-red">*</span>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label for="phone" class="layui-form-label">
+                          <span class="x-red">*</span>手机
+                      </label>
+						<div class="layui-input-inline">
+							<input type="text" id="s_phone" name="phone" required="" lay-verify="phone" autocomplete="off" class="layui-input">
+						</div>
+						<div class="layui-form-mid layui-word-aux">
+							<span id="checkPhone" class="x-red">*</span>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label for="s_age" class="layui-form-label">
+                          <span class="x-red">*</span>年龄
+                      </label>
+						<div class="layui-input-inline">
+							<input type="text" id="s_age" name="phone" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label for="L_pass" class="layui-form-label">
+                          <span class="x-red">*</span>性别
+                      </label>
+						<div class="layui-input-inline">
+							<input type="text" id="s_sex" name="repass" required="" lay-verify="repass" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label for="L_repass" class="layui-form-label">
+                          <span class="x-red">*</span>居住地址
+                      </label>
+						<div class="layui-input-inline">
+							<input type="text" id="s_address" name="repass" required="" lay-verify="repass" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label for="L_repass" class="layui-form-label">
+                      </label>
+					</div>
+				</form>
+				<button id="staffAdd" class="layui-btn"> 增加</button>
+			</div>
+		</div>
+		<script>
+			$(function() {
+				var flag = false;
+				//判断电话号码格式
+				$("#s_phone").keyup(function() {
+					var re = /^1([38]\d|5[0-35-9]|7[3678])\d{8}$/;
+					if(!re.test($("#s_phone").val())) {
+						$("#checkPhone").html("电话号码格式不正确");
+						flag = false;
+					} else {
+						$("#checkPhone").html("√");
+						flag = true;
+					}
+				});
+
+				//监听添加按钮事件
+				$("#staffAdd").click(function() {
+					console.log("点击！");
+					if(flag == true) {
+						doPost();
+					} else {
+						alert("请检查填写的内容")
+					}
+				});
+				//提交表单
+				function doPost() {
+					var page = "addStaff";
+					var name = $("#s_name").val();
+					var age = $("#s_age").val();
+					var phone = $("#s_phone").val();
+					var sex = $("#s_sex").val();
+					var address =  $("#s_address").val();
+					$.post(page, {
+						s_name: name,
+						s_age: age,
+						s_phone: phone,
+						s_sex: sex,
+						s_address: address
+					}, function(jsonResult) {
+						var obj = JSON.parse(jsonResult);
+						if(obj.jsonResult.code == 200) {
+							console.log(obj.jsonResult.msg);
+							alert(obj.jsonResult.msg);
+							parent.location.reload();
+						} else {
+							alert(obj.jsonResult.msg);
+						}
+
+					});
+				}
+
+			});
+		</script>
+	</body>
+
+</html>

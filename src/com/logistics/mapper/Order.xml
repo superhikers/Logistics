@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+    <mapper namespace="com.logistics.mapper.OrderMapper">
+        <insert id="add" parameterType="Order" >
+            insert into order_ ( f_name,f_phone,f_province,f_address,s_name,s_phone,s_province,s_address,remark,u_username,o_startDate,o_number ) 
+            values (#{f_name},#{f_phone},#{f_province},#{f_address},#{s_name},#{s_phone},#{s_province},#{s_address},#{remark},#{u_username},#{o_startDate},#{o_number})   
+        </insert> 
+         
+         <select id="findUserOrder" parameterType="String" resultType="Order">
+            select * from   order_  where u_username= #{username}    
+        </select>
+         
+        <select id="getPageAll" parameterType="String" resultType="Order">
+            select * from   order_    limit #{start},#{pageSize}
+        </select>
+        
+        <select id="getPageAllOk" parameterType="String" resultType="Order">
+            select * from   order_  where o_state="未接单"  limit #{start},#{pageSize}
+        </select>
+        
+        <select id="getAll" parameterType="String" resultType="Order">
+            select * from   order_    
+        </select>
+        
+        <select id="getUserOrderByPhone" parameterType="String" resultType="Order">
+            select * from   order_  where s_phone = #{phone}   
+        </select>
+        
+        <select id="getUserOrderByNumber" parameterType="String" resultType="Order">
+            select * from   order_  where o_number = #{number}   
+        </select>
+        
+        <select id="findPageCount" parameterType="String" resultType="int">
+            select count(0) from  order_  where u_username = #{username}   
+        </select>
+        
+        <select id="getCount" parameterType="String" resultType="int">
+            select count(0) from  order_     
+        </select>
+        
+        <select id="getOkCount" parameterType="String" resultType="int">
+            select count(0) from  order_  where o_state="未接单"
+        </select>
+        
+        <select id="findOrderByPage" resultType="Order">
+            select * from  order_  where u_username = #{username} limit #{start},#{pageSize}
+        </select>
+        
+        <update id="orderFinish" parameterType="String" >
+            update order_ set o_state="确认收货",o_endDate = #{o_endDate} where o_number=#{o_number}   
+        </update>
+        
+        <delete id="deleteByOrderNum" parameterType="String" >
+            delete from order_ where o_number= #{o_number}  
+        </delete>
+        
+        <update id="staffGetOrder" parameterType="String" >
+            update order_ set o_state="已接单",o_location="已接单，等待发货" where o_number=#{o_number}   
+        </update>
+    </mapper>

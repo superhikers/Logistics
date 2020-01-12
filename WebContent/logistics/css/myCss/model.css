@@ -1,0 +1,72 @@
+body {
+	background-color: ;
+}
+
+div.item img {
+	width: 100%;
+}
+/*导航*/
+.nav>li:hover .dropdown-menu {
+			display: block;
+		}
+div#carousel-example-generic {
+	width: 100%;
+	margin: 0 auto;
+	#top_text a {
+		height: 20px;
+		margin-top: 10px;
+		padding-top: 10px;
+	}
+}
+
+.font_ {
+	font-size: 20px;
+	color: #5E5E5E;
+}
+
+.navbar-nav>li>a {
+	padding-top: 4px;
+	padding-bottom: 0;
+	height: 50px;
+	line-height: 49px;
+	font-size: 20px;
+}
+
+.navbar {
+	min-height: 50px;
+}
+
+.nav-pills>li>a {
+	padding-top: 4px;
+	padding-bottom: 0;
+	height: 50px;
+	line-height: 49px;
+	font-size: 20px;
+}
+
+.nav-pills {
+	min-height: 50px;
+}
+
+.mod_cen {
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+
+.form-horizontal {
+	margin: 10px 50px;
+}
+
+.control-label {
+	text-align: right;
+}
+
+.form-control {
+	width: 100%;
+}
+
+.modal-content {
+	overflow: auto;
+	max-height: 330px;
+}

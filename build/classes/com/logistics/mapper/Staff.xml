@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+    <mapper namespace="com.logistics.mapper.StaffMapper">
+    
+        <select id="getStaffCount"  resultType="int">
+            select count(0) from   staff  where s_state='已启用'  
+        </select>
+        
+        <select id="getAllStaff"  resultType="Staff">
+            select * from   staff where s_state='已启用' limit #{start},#{limit}
+        </select>
+        
+        <insert id="addStaff" parameterType="Staff" >
+            insert into staff ( s_name,s_age,s_sex,s_phone,s_address,s_userid ) values (#{s_name},#{s_age},#{s_sex},#{s_phone},#{s_address},#{s_userid})   
+        </insert>
+        
+        <delete id="deleteSufferById" parameterType="Staff" >
+            delete from staff where s_id= #{s_id}  
+        </delete>
+        
+        <select id="getStaff"  resultType="Staff">
+            select * from   staff where s_userid=#{s_userid}
+        </select>
+        
+        <insert id="getOrder" parameterType="OrderConnStaff" >
+            insert into order_staff ( o_number,s_userid,s_name ) values (#{o_number},#{s_userid},#{s_name})   
+        </insert>
+        
+        <select id="getMyCount" parameterType="String" resultType="int">
+            select count(0) from order_ o,order_staff os where o.o_number = os.o_number and os.s_userid=#{s_userid}
+        </select> 
+        
+        <select id="getMyOrder"  resultType="Order">
+            SELECT * FROM order_ o,order_staff os WHERE o.o_number = os.o_number AND os.s_userid=#{s_userid} limit #{start},#{limit}
+        </select>
+        
+        <update id="setDeliver" parameterType="String" >
+            update order_ set o_state="已发货" where o_number=#{o_number}   
+        </update>
+        
+        <update id="orderSend" parameterType="String" >
+            update order_ set o_state="派件中" where o_number=#{o_number}   
+        </update>
+        
+        <update id="changeLocation" parameterType="String" >
+            update order_ set o_location= #{o_location} where o_number=#{o_number}   
+        </update>
+        
+        <select id="getFinishCount" parameterType="String" resultType="int">
+            select count(0) from order_ o,order_staff os where o.o_number = os.o_number and os.s_userid=#{s_userid} and o.o_state="确认收货"
+        </select>
+        
+        <select id="getFinishOrder"  resultType="Order">
+            SELECT * FROM order_ o,order_staff os WHERE o.o_number = os.o_number AND os.s_userid=#{s_userid} and o.o_state="确认收货" limit #{start},#{limit}
+        </select>
+        
+    </mapper>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>首页</title>
+
+	</head>
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	
+	<link rel="stylesheet" href="css/myCss/model.css" type="text/css" />
+	<script>
+		$(function() {
+			$("#open").click(function() {
+				$("#myModal").modal('show');
+			});
+			$("#register").click(function() {
+				$("#myModalRegister").modal('show');
+				$("#myModal").modal('hide');
+			});
+			$("#a_login").click(function() {
+				$("#myModal").modal('show');
+				$("#myModalRegister").modal('hide');
+			});
+		});
+	</script>
+
+	<body>
+		<dir style="accelerator: 10px; "></dir>
+		<div class="container " style="height: 60px; background-color: #ffffff;">
+			<div class="row">
+				<div class="col-md-6">
+					<ul class="nav nav-pills" style="">
+						<li>
+							<a href="index.html">首页</a>
+						</li>
+						<li>
+							<a href="userLogistics.html">物流</a>
+						</li>
+						<li>
+							<a href="#">新闻</a>
+						</li>
+						<li>
+							<a href="#">服务支持</a>
+							<ul class="dropdown-menu">
+								<li class="menu-item menu-item-type-post_type menu-item-object-post">
+									<a href="send.html" class="fontsize">在线寄件</a>
+								</li>
+								<li class="menu-item menu-item-type-post_type menu-item-object-post">
+									<a href="order.html" class="fontsize">订单查询</a>
+								</li>
+
+							</ul>
+						</li>
+						<li>
+							<a href="#">关于我们</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-6 ">
+					<div>
+						<div id="container">
+							<div class="col-md-4"></div>
+							<div class="col-md-4"></div>
+							<div class="col-md-4">
+								<ul class="nav nav-pills text-right" align="right">
+									<li >
+										<a class="btn" id="open">
+											<div id="unLog" >登录/注册</div>
+										</a>
+										<a class="btn" id="isLog">
+											<div id="isLogMsg" ></div>
+										</a>
+										<div id="logList">
+											<ul class="dropdown-menu">
+												<li class="menu-item menu-item-type-post_type menu-item-object-post">
+													<a href="userData.html" class="fontsize">个人资料</a>
+												</li>
+												<li class="menu-item menu-item-type-post_type menu-item-object-post">
+													<a id="logOut" href="#" class="fontsize">退出登录</a>
+												</li>
+											</ul>
+										</div>
+									</li>
+									
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--登录开始-->
+		<div class="modal fade mod_cen" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button id="logClose" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+						<h4 class="modal-title text-center">登录</h4>
+					</div>
+					<div class="modal-body">
+						<form class="form-horizontal" action="" name="formLogin" method="post">
+							<div class="form-group">
+								<label for="inputEmail3" class="col-sm-3 control-label">用户名：</label>
+								<div class="col-sm-9">
+									<input id="logName" type="text" class="form-control " placeholder="用户名">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputPassword3" class="col-sm-3 control-label">密码：</label>
+								<div class="col-sm-9">
+									<input id="logPasswd" type="password" class="form-control"  placeholder="密码">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-10">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-10">
+									<button type="button" id="logSub"  class="btn btn-default">登录</button>
+									<button type="button" class="btn btn-default" id="register">注册</button>
+								</div>
+							</div>
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!--登录结束-->
+
+		<!--注册开始-->
+		<div class="modal fade mod_cen" id="myModalRegister" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button id="regClose" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+						<h4 class="modal-title text-center">注册</h4>
+					</div>
+					<div class="modal-body">
+						<form id="form_reg" class="form-horizontal" action="" method="post">
+							<div class="form-group">
+								<label for="inputEmail3" class="col-sm-3 control-label">用户名：</label>
+								<div class="col-sm-9">
+									<div id="checkResultUsername" class="text-danger"></div>
+									<input id="rUsername" type="text" class="form-control" placeholder="用户名">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputPassword3" class="col-sm-3 control-label">密码：</label>
+								<div class="col-sm-9">
+									<input id="rPassword" type="password" class="form-control" placeholder="密码">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputPassword3" class="col-sm-3 control-label">确认密码：</label>
+								<div class="col-sm-9">
+									<input id="rPassword2" type="password" class="form-control" placeholder="确认密码">
+									<div id="checkResult" class="text-danger"></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputPassword3" class="col-sm-3 control-label">手机号码：</label>
+								<div class="col-sm-9">
+									<input id="rPhone" type="text" class="form-control" placeholder="手机号码">
+									<div id="checkResultPhone" class="text-danger"></div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-10">
+									<button id="rSub" type="button" class="btn btn-default">注册</button>
+									<span> 已有账户？<a href="#" id="a_login">登录</a></span>
+								</div>
+							</div>
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!--注册结束-->
+		<!--提交注册信息开始-->
+		
+		<!--提交注册信息结束-->
+
+		<!--轮播图开始-->
+		<dir style="accelerator: 10px; "></dir>
+		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="3000">
+			<!-- Indicators -->
+			<ol class="carousel-indicators">
+				<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+				<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+				<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+				<li data-target="#carousel-example-generic" data-slide-to="3"></li>
+			</ol>
+
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner" role="listbox">
+				<div class="item active">
+					<img src="img/banner/banner_1.jpg">
+				</div>
+				<div class="item">
+					<img src="img/banner/banner_2.jpg">
+				</div>
+				<div class="item">
+					<img src="img/banner/banner_3.jpg">
+				</div>
+				<div class="item">
+					<img src="img/banner/banner_4.png">
+				</div>
+			</div>
+
+		</div>
+		
+		<!--第二导航栏-->
+		<dir style="height: 5px;"></dir>
+		<div class="navbar-collapse collapse" style="text-align: center;">
+			<ul class="nav navbar-nav" style="display: inline-block;float: none;">
+				<li class="">
+					<a href="send.html">
+						<img width="28px" src="img/daohan2/在线寄件.png" />&nbsp; 在线寄件
+					</a>
+				</li>
+				<li class="">
+					<a href="order.html">
+						<img width="28px" src="img/daohan2/订单查询.png" />&nbsp; 订单查询
+					</a>
+				</li>
+				<li class="">
+					<a href="#">
+						<img width="28px" src="img/daohan2/运费查询.png" />&nbsp; 运费查询
+					</a>
+				</li>
+				<!--<li class="">
+					<a href="#">
+						<img width="28px" src="img/daohan2/网点查询.png" />&nbsp; 网点查询
+					</a>
+				</li>
+				<li class="">
+					<a href="#">
+						<img width="28px" src="img/daohan2/收件查询.png" />&nbsp; 收件范围查询
+					</a>
+				</li>-->
+			</ul>
+		</div>
+
+		<dir style="height: 5px;"></dir>
+
+		<!--快递介绍-->
+		<div class="panel panel-default">
+			<div class="panel-heading text-center">
+				<h4>三步轻松快递</h4></div>
+			<div class="panel-body">
+				<div class="row text-center">
+					<dir style="height: 5px;"></dir>
+					<div class="col-md-4">
+						<a href="userLogistics.html">
+							<img src="img/icon/01.png" style="height: 40px;" /><br /><br />
+							<span class="font_">注册并拥有你的专属仓库</span>
+						</a>
+					</div>
+					<div class=" col-md-4">
+						<a href="send.html">
+							<img src="img/icon/02.png" style="height: 40px;" /><br /><br />
+							<span class="font_">购物并发送至专属仓库</span>
+						</a>
+					</div>
+					<div class=" col-md-4">
+						<a href="userLogistics.html">
+							<img src="img/icon/03.png" style="height: 40px;" /><br /><br />
+							<span class="font_">货物送达到你手中</span>
+						</a>
+					</div>
+				</div>
+				<dir style="height: 5px;"></dir>
+			</div>
+		</div>
+
+		<dir style="height: 10px;"></dir>
+		<!--新闻资讯-->
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 ">
+					<div class="panel panel-info ">
+						<div class="panel-heading">
+							<h4>新闻资讯</h4>
+						</div>
+						<div class="panel-body">
+							<div class="list-group">
+								<a href="#" class="list-group-item">
+									<h5><img src="img/icon/新闻.png" style="height: 20px;" />
+									 · 国际物流与供应链管理发展论坛于5月举行</h5>
+								</a>
+								<a href="#" class="list-group-item">
+									<h5><img src="img/icon/新闻.png" style="height: 20px;" />
+										 · 牢记使命责任 推进战略执行2019年“双十一”高峰保障工作会议召开</h5>
+								</a>
+								<a href="#" class="list-group-item">
+									<h5><img src="img/icon/新闻.png" style="height: 20px;" />
+										 · 不忘初心、牢记使命：50名党员参加“家乡书记送党课”活动</h5>
+								</a>
+								<a href="#" class="list-group-item">
+									<h5><img src="img/icon/新闻.png" style="height: 20px;" />
+										 · 国防邮电工会黄敬平副主席一行莅临指导工会工作</h5>
+								</a>
+								<a href="#" class="list-group-item">
+									<h5><img src="img/icon/新闻.png" style="height: 20px;" />
+										 · 快递联通世界，多项成果亮相第三届（杭州）国际快递业大会</h5>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		<div class="jumbotron text-center" style="margin-bottom:0">
+			<!--页脚开始、-->
+			<div class="foot">
+				<div style="height: 20px;"></div>
+				<a href="#"><img class="imgg" width="30px" src="img/foot/wx01.png"></a>&nbsp;&nbsp;
+				<a href="#"><img class="imgg" width="30px" src="img/foot/wb.png"></a>&nbsp;&nbsp;
+				<a href="#"><img class="imgg" width="28px" src="img/foot/qq.png"></a>
+				<p>©2004-2019 linbo版权所有。<br> 由gzgs主持的html
+				</p>
+			</div>
+			<!--页脚结束-->
+		</div>
+	</body>
+	<script src="js/Myjs/myJs.js"></script>
+</html>

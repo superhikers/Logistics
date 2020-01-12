@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>首页</title>
+
+	</head>
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="css/myCss/model.css" type="text/css" />
+	<!--js代码开始-->
+	<script>
+		$(function() {
+			$("#open").click(function() {
+				$("#myModal").modal('show');
+			});
+			$("#register").click(function() {
+				$("#myModalRegister").modal('show');
+				$("#myModal").modal('hide');
+			});
+			$("#a_login").click(function() {
+				$("#myModal").modal('show');
+				$("#myModalRegister").modal('hide');
+			});
+		});
+	</script>
+	<!--js代码结束-->
+
+	<body>
+		<dir style="accelerator: 10px;"></dir>
+		<div class="container " style="height: 60px; background-color: #ffffff;">
+			<div class="row">
+				<div class="col-md-6">
+					<ul class="nav nav-pills" style="">
+						<li>
+							<a href="index.html">首页</a>
+						</li>
+						<li>
+							<a href="userLogistics.html">物流</a>
+						</li>
+						<li>
+							<a href="#">新闻</a>
+						</li>
+						<li>
+							<a href="#">服务支持</a>
+							<ul class="dropdown-menu">
+								<li class="menu-item menu-item-type-post_type menu-item-object-post">
+									<a href="send.html" class="fontsize">在线寄件</a>
+								</li>
+								<li class="menu-item menu-item-type-post_type menu-item-object-post">
+									<a href="order.html" class="fontsize">订单查询</a>
+								</li>
+
+							</ul>
+						</li>
+						<li>
+							<a href="#">关于我们</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-6 ">
+					<div>
+						<div id="container">
+							<div class="col-md-4"></div>
+							<div class="col-md-4"></div>
+							<div class="col-md-4">
+								<ul class="nav nav-pills text-right" align="right">
+									<li>
+										<a class="btn" id="open">
+											<div id="unLog">登录/注册</div>
+										</a>
+										<a class="btn" id="isLog">
+											<div id="isLogMsg"></div>
+										</a>
+										<div id="logList">
+											<ul class="dropdown-menu">
+												<li class="menu-item menu-item-type-post_type menu-item-object-post">
+													<a href="userData.html" class="fontsize">个人资料</a>
+												</li>
+												<li class="menu-item menu-item-type-post_type menu-item-object-post">
+													<a id="logOut" href="#" class="fontsize">退出登录</a>
+												</li>
+											</ul>
+										</div>
+									</li>
+
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--登录开始-->
+		<div class="modal fade mod_cen" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button id="logClose" data-dismiss="modal" class="close" type="button">
+						<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+					</button>
+						<h4 class="modal-title text-center">登录</h4>
+					</div>
+					<div class="modal-body">
+						<form class="form-horizontal" action="" name="formLogin" method="post">
+							<div class="form-group">
+								<label for="inputEmail3" class="col-sm-3 control-label">用户名：</label>
+								<div class="col-sm-9">
+									<input id="logName" type="text" class="form-control " placeholder="用户名">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputPassword3" class="col-sm-3 control-label">密码：</label>
+								<div class="col-sm-9">
+									<input id="logPasswd" type="password" class="form-control" placeholder="密码">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-10">
+
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-10">
+									<button type="button" id="logSub" class="btn btn-default">登录</button>
+									<button type="button" class="btn btn-default" id="register">注册</button>
+								</div>
+							</div>
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!--登录结束-->
+
+		<!--注册开始-->
+		<div class="modal fade mod_cen" id="myModalRegister" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button id="regClose" data-dismiss="modal" class="close" type="button">
+						<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+					</button>
+						<h4 class="modal-title text-center">注册</h4>
+					</div>
+					<div class="modal-body">
+						<form id="form_reg" class="form-horizontal" action="" method="post">
+							<div class="form-group">
+								<label for="inputEmail3" class="col-sm-3 control-label">用户名：</label>
+								<div class="col-sm-9">
+									<div id="checkResultUsername" class="text-danger"></div>
+									<input id="rUsername" type="text" class="form-control" placeholder="用户名">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputPassword3" class="col-sm-3 control-label">密码：</label>
+								<div class="col-sm-9">
+									<input id="rPassword" type="password" class="form-control" placeholder="密码">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputPassword3" class="col-sm-3 control-label">确认密码：</label>
+								<div class="col-sm-9">
+									<input id="rPassword2" type="password" class="form-control" placeholder="确认密码">
+									<div id="checkResult" class="text-danger"></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputPassword3" class="col-sm-3 control-label">手机号码：</label>
+								<div class="col-sm-9">
+									<input id="rPhone" type="text" class="form-control" placeholder="手机号码">
+									<div id="checkResultPhone" class="text-danger"></div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-10">
+									<button id="rSub" type="button" class="btn btn-default">注册</button>
+									<span> 已有账户？<a href="#" id="a_login">登录</a></span>
+								</div>
+							</div>
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!--注册结束-->
+
+		<!--寄件栏开始-->
+		<div style="width: 100%; background-color: #F8F8F8;">
+			<hr />
+			<div class="container" style="background-color: #FFFFFF;">
+				<div class="form-group" style="margin: 10px;">
+					<label class="col-sm-12  text-center"><h2>个人资料修改</h2></label>
+					<hr class="col-sm-12" />
+				</div>
+
+				<hr />
+				<form class="form-horizontal" id="orderForm">
+					<div class="form-group">
+						<div class="col-sm-2"></div>
+						<label for="inputEmail3" class="col-sm-2 control-label">用户名：</label>
+						<div class="col-sm-5">
+							<input type="text" class="form-control" disabled id="u_username" placeholder="">
+						</div>
+						<div class="col-sm-2"></div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-2"></div>
+						<label for="inputEmail3" class="col-sm-2 control-label">电话号码：</label>
+						<div class="col-sm-5">
+							<input type="text" class="form-control" id="u_phone">
+							<div id="checkPhone" class="text-danger"></div>
+						</div>
+						<div class="col-sm-2"></div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-2"></div>
+						<label for="inputEmail3" class="col-sm-2 control-label">地址：</label>
+						<div class="col-sm-5">
+							<input type="text" class="form-control" id="u_address" placeholder="">
+						</div>
+						<div class="col-sm-2"></div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-2"></div>
+						<label for="inputEmail3" class="col-sm-2 control-label">性别：</label>
+						<div class="col-sm-5">
+							<select id="u_sex" class="form-control">
+								<option>男</option>
+								<option>女</option>
+								<option>未填写</option>
+							</select>
+						</div>
+						<div class="col-sm-2"></div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-2"></div>
+						<label for="inputEmail3" class="col-sm-2 control-label">邮箱：</label>
+						<div class="col-sm-5">
+							<input type="text" class="form-control" id="u_email" placeholder="">
+							<div id="checkEmail" class="text-danger"></div>
+						</div>
+						<div class="col-sm-2"></div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-12">
+							<button type="button" id="changeUserInfo" class="btn btn-default center-block" style="width: 80%;">修改</button>
+						</div>
+						<hr class="col-sm-12" />
+					</div>
+				</form>
+			</div>
+			<br /> <br />
+			<hr />
+		</div>
+
+		<!--寄件栏结束-->
+		<script>
+			$(function() {
+				$("#changeUserInfo").click(function() {
+					var page = "changeUserInfo";
+					var name = $("#u_username").val();
+					var phone = $("#u_phone").val();
+					var address = $("#u_address").val();
+					var email = $("#u_email").val();
+					var sex = $("#u_sex").val();
+					if($("#checkPhone").html() != "" ||$("#checkEmail").html()!="") {
+						alert("请将信息填写正确！");
+						return 0;
+					}
+					alert("是否确定修改？");
+					$.post(page, {
+						u_username: name,
+						u_phone: phone,
+						u_address: address,
+						u_email: email,
+						u_sex: sex
+					}, function(jsonResult) {
+						var obj = JSON.parse(jsonResult);
+						if(obj.jsonResult.code == 200) {
+							alert(obj.jsonResult.msg);
+						} else {
+							alert(obj.jsonResult.msg);
+						}
+
+					});
+				});
+			});
+			//判断电话号码
+			$(function() {
+				$("#u_phone").keyup(function() {
+					var re = /^1([38]\d|5[0-35-9]|7[3678])\d{8}$/;
+					if(!re.test($("#u_phone").val())) {
+						$("#checkPhone").html("电话号码格式不正确");
+					} else {
+						$("#checkPhone").html("");
+					}
+				});
+			});
+			//判断邮箱格式
+				$("#u_email").keyup(function() {
+					var re = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+					if(!re.test($("#u_email").val())) {
+						$("#checkEmail").html("邮箱格式不正确");
+					} else {
+						$("#checkEmail").html("");
+					}
+				});
+
+			//将用户信息填入表单
+			function setForm(username) {
+				$.post("getUserInfo", {
+					u_username: username
+				}, function(result) {
+					var obj = JSON.parse(result);
+					if(obj.result.code == 200) {
+						$('#u_username').val(obj.result.data.u_username);
+						$('#u_phone').val(obj.result.data.u_phone);
+						$('#u_address').val(obj.result.data.u_address);
+						$('#u_email').val(obj.result.data.u_email);
+						$("#u_sex").val(obj.result.data.u_sex);
+					}
+					if(obj.result.code == 500) {
+						console.log(obj.result.msg);
+					}
+				});
+			}
+			//检查登录
+			$(document).ready(function() {
+				var page = "checkIsLogin";
+				$.post(page, "", function(result) {
+					var obj = JSON.parse(result);
+					if(obj.result.code == 200) {
+						setForm(obj.result.data);
+					}
+					if(obj.result.code == 500) {
+						$(location).attr('href', 'index.html');
+					}
+				});
+			});
+		</script>
+
+		<!--页脚开始、-->
+		<div class="jumbotron text-center" style="margin-bottom: 0">
+			<div class="foot">
+				<div style="height: 20px;"></div>
+				<a href="#"><img class="imgg" width="30px" src="img/foot/wx01.png"></a>&nbsp;&nbsp;
+				<a href="#"><img class="imgg" width="30px" src="img/foot/wb.png"></a>&nbsp;&nbsp;
+				<a href="#"><img class="imgg" width="28px" src="img/foot/qq.png"></a>
+				<p>
+					©2004-2019 linbo版权所有。<br> 由gzgs主持的html
+				</p>
+			</div>
+		</div>
+		<!--页脚结束-->
+	</body>
+	<script src="js/Myjs/myJs.js"></script>
+
+</html>
